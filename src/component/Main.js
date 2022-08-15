@@ -7,7 +7,7 @@ import Splash from './Splash'
 const axios = require('axios');
 
 const getData = (time) => {
-  const res = axios.get(`../visual_data/trips_${time}.json`);
+  const res = axios.get(`https://raw.githubusercontent.com/HNU209/Seoul-visualization/main/src/data/trips_${time}.json`);
   const result = res.then(r => r.data);
   return result
 }
