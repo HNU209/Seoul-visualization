@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/HNU209/Seoul-visualization/static/css/main.e5030b53.css",
-    "main.js": "/HNU209/Seoul-visualization/static/js/main.102a933a.js",
-    "static/js/787.11d1802a.chunk.js": "/HNU209/Seoul-visualization/static/js/787.11d1802a.chunk.js",
-    "service-worker.js": "/HNU209/Seoul-visualization/service-worker.js",
-    "index.html": "/HNU209/Seoul-visualization/index.html",
-    "main.e5030b53.css.map": "/HNU209/Seoul-visualization/static/css/main.e5030b53.css.map",
-    "main.102a933a.js.map": "/HNU209/Seoul-visualization/static/js/main.102a933a.js.map",
-    "787.11d1802a.chunk.js.map": "/HNU209/Seoul-visualization/static/js/787.11d1802a.chunk.js.map"
+    "main.css": "/Seoul-visualization/static/css/main.e5030b53.css",
+    "main.js": "/Seoul-visualization/static/js/main.5089c03e.js",
+    "static/js/787.11d1802a.chunk.js": "/Seoul-visualization/static/js/787.11d1802a.chunk.js",
+    "service-worker.js": "/Seoul-visualization/service-worker.js",
+    "index.html": "/Seoul-visualization/index.html",
+    "main.e5030b53.css.map": "/Seoul-visualization/static/css/main.e5030b53.css.map",
+    "main.5089c03e.js.map": "/Seoul-visualization/static/js/main.5089c03e.js.map",
+    "787.11d1802a.chunk.js.map": "/Seoul-visualization/static/js/787.11d1802a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e5030b53.css",
-    "static/js/main.102a933a.js"
+    "static/js/main.5089c03e.js"
   ]
 }
