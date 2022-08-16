@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StaticMap } from 'react-map-gl';
 import { AmbientLight, PointLight, LightingEffect } from '@deck.gl/core';
 import DeckGL from '@deck.gl/react';
-import { PolygonLayer } from '@deck.gl/layers';
+import { PolygonLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
 import { TripsLayer } from '@deck.gl/geo-layers';
 import '../css/trip.css'
 
@@ -55,14 +55,32 @@ const landCover = [
   ],
 ];
 
-// const ICON_MAPPING = {
-//   marker: {x: 0, y: 0, width: 128, height: 128, mask: true}
-// };
+const ICON_MAPPING = {
+  marker: {x: 0, y: 0, width: 128, height: 128, mask: true}
+};
+
+const currData = (data, time) => {
+  const arr = [];
+  data.forEach(v => {
+    const timestamp = v.timestamps;
+    const s_t = timestamp[0];
+    const e_t = timestamp[timestamp.length - 1];
+    if ((s_t <= time) && (e_t >= time)) {
+      arr.push(v)
+    }
+  })
+  return arr;
+}
 
 function renderLayers(props) {
   const theme = DEFAULT_THEME;
   const time = props.time;
   const trip = props.trip;
+  const empty = props.empty;
+  const ps = props.ps;
+
+  const currEmpty = currData(empty, time);
+  const currPs = currData(ps, time);
 
   return [
     new PolygonLayer({
@@ -86,6 +104,32 @@ function renderLayers(props) {
       currentTime: time,
       shadowEnabled: false,
     }),
+    new ScatterplotLayer({
+      id: 'empty',
+      data: currEmpty,
+      getPosition: (d) => d.loc,
+      getFillColor: (d) => [255, 255, 255],
+      getRadius: (d) => 1,
+      opacity: 0.3,
+      pickable: false,
+      radiusMinPixels: 1,
+      radiusMaxPixels: 1,
+    }),
+    new IconLayer({
+      id: 'ps',
+      data: currPs,
+      sizeScale: 10,
+      iconAtlas: 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/website/icon-atlas.png',
+      iconMapping: ICON_MAPPING,
+      getIcon: (d) => 'marker',
+      getSize: d => 0.5,
+      getPosition: (d) => d.loc,
+      getColor: d => [255, 255, 0],
+      opacity: 0.3,
+      pickable: false,
+      radiusMinPixels: 0.5,
+      radiusMaxPixels: 0.5,
+    }),
   ];
 }
 
@@ -96,6 +140,8 @@ export default function Trip(props) {
   const animationSpeed = 4;
   const time = props.time;
   const trip = props.trip;
+  const empty = props.empty;
+  const ps = props.ps;
 
   const [animationFrame, setAnimationFrame] = useState('');
   const viewState = undefined;
@@ -122,7 +168,7 @@ export default function Trip(props) {
   return (
     <div className="trip-container" style={{position:'relative'}}>
       <DeckGL
-        layers={renderLayers({'trip':trip, 'time':time})}
+        layers={renderLayers({'trip':trip, 'empty':empty, 'ps':ps, 'time':time})}
         effects={DEFAULT_THEME.effects}
         viewState={viewState}
         controller={true}
