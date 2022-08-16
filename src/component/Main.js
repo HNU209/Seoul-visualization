@@ -53,13 +53,15 @@ export default function Main() {
     const set = new Set(dataTime);
     setDataTime([...set]);
 
+    // console.log(dataTime)
+
     const t = Math.floor(time);
     if (!(dataTime.includes(t))) {
+      setDataTime([...dataTime, t])
       const addData = async () => {
         const returnData = await getData(t);
         if (returnData) {
           setDataList([...dataList, ...returnData])
-          setDataTime([...dataTime, t])
 
         }
       }
