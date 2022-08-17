@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Trip from './Trip';
 import '../css/main.css';
 import Slider from '@mui/material/Slider';
-import Splash from './Splash'
-
-const axios = require('axios');
+import Splash from './Splash';
+import axios from 'axios';
 
 const getTripData = time => {
   const res = axios.get(`https://raw.githubusercontent.com/HNU209/Seoul-visualization/main/src/data/visual_data/trips_${time}.json`);

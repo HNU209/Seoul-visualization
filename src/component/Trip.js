@@ -97,10 +97,10 @@ function renderLayers(props) {
       getTimestamps: (d) => d.timestamps,
       getColor: (d) => 
       d.vendor === 0 ? theme.trailColor0 : theme.trailColor1,
-      opacity: 0.3,
-      widthMinPixels: 1.5,
+      opacity: 0.5,
+      widthMinPixels: 2,
       lineJointRounded: false,
-      trailLength: 0.3,
+      trailLength: 0.5,
       currentTime: time,
       shadowEnabled: false,
     }),
