@@ -4,7 +4,8 @@ import { AmbientLight, PointLight, LightingEffect } from '@deck.gl/core';
 import DeckGL from '@deck.gl/react';
 import { PolygonLayer, ScatterplotLayer, IconLayer } from '@deck.gl/layers';
 import { TripsLayer } from '@deck.gl/geo-layers';
-import '../css/trip.css'
+import '../css/trip.css';
+import legend from '../img/legend.png';
 
 const MAPBOX_TOKEN = `pk.eyJ1Ijoic3BlYXI1MzA2IiwiYSI6ImNremN5Z2FrOTI0ZGgycm45Mzh3dDV6OWQifQ.kXGWHPRjnVAEHgVgLzXn2g`; // eslint-disable-line
 
@@ -183,7 +184,7 @@ export default function Trip(props) {
       <h1 className="time">
         TIME : {(String(parseInt(Math.round(time) / 60) % 24).length === 2) ? parseInt(Math.round(time) / 60) % 24 : '0'+String(parseInt(Math.round(time) / 60) % 24)} : {(String(Math.round(time) % 60).length === 2) ? Math.round(time) % 60 : '0'+String(Math.round(time) % 60)}
       </h1>
-      
+      <img className='legend' src={legend}></img>
     </div>
   );
 }
