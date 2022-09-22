@@ -138,7 +138,7 @@ export default function Trip(props) {
   const minTime = props.minTime;
   const maxTime = props.maxTime;
 
-  const animationSpeed = 4;
+  const animationSpeed = 1;
   const time = props.time;
   const trip = props.trip;
   const empty = props.empty;
