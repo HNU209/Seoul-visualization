@@ -47,6 +47,7 @@ const ICON_MAPPING = {
 const minTime = 1320;
 const maxTime = 1440;
 const animationSpeed = 2;
+const mapStyle = "mapbox://styles/spear5306/ckzcz5m8w002814o2coz02sjc";
 const MAPBOX_TOKEN = `pk.eyJ1Ijoic3BlYXI1MzA2IiwiYSI6ImNremN5Z2FrOTI0ZGgycm45Mzh3dDV6OWQifQ.kXGWHPRjnVAEHgVgLzXn2g`; // eslint-disable-line
 
 const returnAnimationTime = (time) => {
@@ -82,7 +83,6 @@ const currData = (data, time) => {
 };
 
 const Trip = (props) => {
-  const mapStyle = "mapbox://styles/spear5306/ckzcz5m8w002814o2coz02sjc";
   const [time, setTime] = useState(minTime);
   const [animation] = useState([]);
 
