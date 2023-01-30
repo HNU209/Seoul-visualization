@@ -7,7 +7,9 @@ import Trip from "./components/Trip";
 import "./css/app.css";
 
 const fetchData = (FilE_NAME) => {
-  const res = axios.get(`https://raw.githubusercontent.com/HNU209/Seoul-visualization/main/src/data/${FilE_NAME}.json`);
+  const res = axios.get(
+    `https://raw.githubusercontent.com/HNU209/Seoul-visualization/main/src/data/${FilE_NAME}.json`
+  );
   const data = res.then((r) => r.data);
   return data;
 };
@@ -19,7 +21,12 @@ const App = () => {
   const [isloaded, setIsLoaded] = useState(false);
 
   const getData = useCallback(async () => {
-    const TRIP = await Promise.all([fetchData("trip0"), fetchData("trip1"), fetchData("trip2"), fetchData("trip3")]);
+    const TRIP = await Promise.all([
+      fetchData("trip0"),
+      fetchData("trip1"),
+      fetchData("trip2"),
+      fetchData("trip3"),
+    ]);
     const EMPTY_TAXI = await fetchData("empty_taxi");
     const PASSENGER = await fetchData("ps_location");
 
