@@ -111,7 +111,7 @@ const Trip = (props) => {
       opacity: 1,
       widthMinPixels: 3,
       lineJointRounded: false,
-      trailLength: 1,
+      trailLength: 0.5,
       rounded: true,
       currentTime: time,
       shadowEnabled: false,
