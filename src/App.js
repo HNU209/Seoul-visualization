@@ -19,19 +19,19 @@ const App = () => {
   const [isloaded, setIsLoaded] = useState(false);
 
   const getData = useCallback(async () => {
-    const TRIP = await fetchData("trip");
+    const TRIP = await Promise.all([fetchData("trip0"), fetchData("trip1"), fetchData("trip2"), fetchData("trip3")]);
     const EMPTY_TAXI = await fetchData("empty_taxi");
     const PASSENGER = await fetchData("ps_location");
 
-    setTrip((prev) => TRIP);
+    setTrip((prev) => TRIP.flat());
     setEmptyTaxi((prev) => EMPTY_TAXI);
     setPassenger((prev) => PASSENGER);
     setIsLoaded(true);
-  });
+  }, []);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return (
     <div className="container">

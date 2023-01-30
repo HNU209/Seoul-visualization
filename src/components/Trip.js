@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import DeckGL from "@deck.gl/react";
 import { AmbientLight, PointLight, LightingEffect } from "@deck.gl/core";
@@ -44,7 +44,6 @@ const ICON_MAPPING = {
   marker: { x: 0, y: 0, width: 128, height: 128, mask: true },
 };
 
-const viewState = undefined;
 const mapStyle = "mapbox://styles/spear5306/ckzcz5m8w002814o2coz02sjc";
 const MAPBOX_TOKEN = `pk.eyJ1Ijoic3BlYXI1MzA2IiwiYSI6ImNremN5Z2FrOTI0ZGgycm45Mzh3dDV6OWQifQ.kXGWHPRjnVAEHgVgLzXn2g`; // eslint-disable-line
 
@@ -92,15 +91,15 @@ const Trip = (props) => {
   const empty = currData(props.emptyTaxi, time);
   const ps = currData(props.passenger, time);
 
-  const animate = () => {
+  const animate = useCallback(() => {
     setTime((time) => returnAnimationTime(time));
     animation.id = window.requestAnimationFrame(animate);
-  };
+  }, [animation]);
 
   useEffect(() => {
     animation.id = window.requestAnimationFrame(animate);
     return () => window.cancelAnimationFrame(animation.id);
-  }, []);
+  }, [animation, animate]);
 
   const layers = [
     new TripsLayer({
@@ -173,7 +172,7 @@ const Trip = (props) => {
         onChange={SliderChange}
         track="inverted"
       />
-      <img className="legend" src={legend}></img>
+      <img className="legend" src={legend} alt='legend'></img>
     </div>
   );
 };
